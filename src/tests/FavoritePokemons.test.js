@@ -8,10 +8,13 @@ describe('testes do componete Favorite Pokemons', () => {
     () => {
       renderWithRouter(<FavoritePokemons />);
 
-      const msgPokemons = screen.getByRole('', { name: /No favorite pokemon found/i });
+      const msgPokemons = screen.getByText(/No favorite pokemon found/i);
       expect(msgPokemons).toBeInTheDocument();
     });
   it('Teste se são exibidos todos os cards de pokémons favoritados.', () => {
-    renderWithRouter(<FavoritePokemons />);
+    renderWithRouter(<FavoritePokemons pokemons={ [] } />);
+
+    const cardsFavorites = screen.getByText(/No favorite pokemon found/i);
+    expect(cardsFavorites).toBeInTheDocument();
   });
 });
