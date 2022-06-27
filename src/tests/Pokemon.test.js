@@ -1,13 +1,13 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import App from '../App';
 import renderWithRouter from './renderWithRouter';
+import { Pokemon } from '../components';
 
 describe('Testes do componente Pokemon', () => {
   it('Teste se é renderizado um card com as informações de determinado pokémon', () => {
-    renderWithRouter(<App />);
+    renderWithRouter(<Pokemon />);
 
-    const namePokemons = screen.getByRole('paragraph', { name: /pikachu/i });
+    const namePokemons = screen.getByText('paragraph', { name: /pikachu/i });
     expect(namePokemons).toBeInTheDocument();
 
     const typePokemons = screen.getByRole('paragraph', { type: /Electric/i });
