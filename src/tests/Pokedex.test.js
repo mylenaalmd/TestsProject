@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import { Pokedex } from '../pages';
 import renderWithRouter from './renderWithRouter';
 import data from '../data';
-// import pokemons from '../data';
 import App from '../App';
 
 const isPokemon = {
