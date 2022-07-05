@@ -52,29 +52,21 @@ describe('Testes do componente Pokedex', () => {
 
   it('Teste se a Pokédex tem os botões de filtro', () => {
     renderWithRouter(<App />);
-    const arrayTypes = data.reduce((acc, currValue) => {
-      if (!acc.includes(currValue.type)) {
-        acc.push(currValue.type);
-      }
-      return acc;
-    }, []);
-    arrayTypes.forEach((type) => {
-      const filterButton = screen.getByRole('button', { name: type });
-      expect(filterButton).toBeInTheDocument();
-      const arrayFilterTypes = screen.getAllByRole('button', { name: type });
-      expect(arrayFilterTypes).toHaveLength(1);
-    });
-    // const resetPokemon = screen.getByRole('button', { name: /pikachu/i });
-    // expect(resetPokemon).toBeInTheDocument();
+    screen.getAllByTestId('pokemon-type-button').forEach(
+      (item) => expect(item).toBeInTheDocument(),
+    );
+    expect(screen.getByRole('button', { name: /Electric/i })).toBeVisible();
+    expect(screen.getByRole('button', { name: /Poison/i })).toBeVisible();
+    expect(screen.getByRole('button', { name: /Psychic/i })).toBeVisible();
+    expect(screen.getByRole('button', { name: /Dragon/i })).toBeVisible();
+    expect(screen.getByRole('button', { name: /Bug/i })).toBeVisible();
+    expect(screen.getByRole('button', { name: /Normal/i })).toBeVisible();
 
-    data.reduce((acc, currValue) => {
-      if (acc[currValue.type]) {
-        acc[currValue.type] = [...acc[currValue.type], currValue.name];
-      } else {
-        acc[currValue.type] = [currValue.name];
-      }
-      return acc;
-    }, {});
+    const btnTypeFire = screen.getByRole('button', { name: /Fire/i });
+    userEvent.click(btnTypeFire);
+    expect(screen.getByText(/Charmander/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Pikachu/i)).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /All/i })).toBeVisible();
   });
 
   it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
