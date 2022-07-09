@@ -1,8 +1,17 @@
 .App {
   text-align: center;
+  background-color:thistle;
 }
 
 .link {
   margin-left: 20px;
   margin-right: 20px;
+}
+
+.button-text {
+  border-radius: 20%;
+}
+
+.pokedex-button {
+  background-color:rgb(230, 210, 30);
 }
